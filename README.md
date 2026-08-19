@@ -4,6 +4,40 @@ SQLite cordova interface based on (the now gone) *storage-master* branch of [sto
 
 - Support for multiple transactions running concurrently (using multiple connections)
 
+## SQLite artefacts vendored in this fork
+
+From version `6.1.0+2.0.0`, this fork **vendors its SQLite artefacts directly** rather than
+fetching them from a separate dependency package at plugin-install time:
+
+| Path                            | Consumed by  |
+|---------------------------------|--------------|
+| `libs/sqlite-ndk-connector.jar` | android      |
+| `libs/sqlite-ndk-driver.jar`    | android      |
+| `sqlite3.h`, `sqlite3.c`        | ios, osx     |
+
+**SQLite version: 3.50.0.**
+
+All four are produced by the same build that also supplies the Capacitor mobile template, so both
+templates ship byte-identical artefacts. That build's own `CONTRIBUTING.md` documents the
+reproducible rebuild procedure and the manual republish step into this repository. The artefacts are
+**not** built here, and editing them in place will be overwritten by the next republish.
+
+Earlier plugin tags resolve their artefacts through
+`OutSystems/cordova-sqlite-storage-dependencies` instead. That repository remains a live
+build-time dependency of older MABS versions and must not be modified or retired.
+
+### The `browser` platform has been removed
+
+Also as of `6.1.0+2.0.0`. The browser platform's only SQLite engine was
+`sql-asm-memory-growth.js`, a third-party asm.js build of SQLite 3.22.3 that came from the
+dependency package. That build does not produce it, and there is no equivalent to vendor,
+so `<platform name="browser">`, `src/browser/SQLiteProxy.js` and the browser spec were removed
+along with it.
+
+The upstream README text reproduced below still documents the browser platform at length. **Those
+sections do not apply to this fork** — they are retained as inherited upstream documentation. The
+supported platforms here are android, ios, osx and windows.
+
 Below is an updated version of the source branch's README for further documentation, as of the last merge.
 
 # Original README information

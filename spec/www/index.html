@@ -16,7 +16,8 @@
   <!-- [Cordova] source file(s): -->
   <script src="cordova.js"></script>
 
-  <!-- browser startup test: -->
+  <!-- harness bootstrap: sets window.hasBrowser and window.hasWebKitWebSQL, which every
+       spec below gates on. Despite the name it is not browser-platform specific. -->
   <script src="spec/browser-check-startup.js"></script>
 
   <!-- other spec file(s): -->
