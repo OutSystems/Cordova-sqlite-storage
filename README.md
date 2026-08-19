@@ -15,7 +15,7 @@ fetching them from a separate dependency package at plugin-install time:
 | `libs/sqlite-ndk-driver.jar`    | android      |
 | `sqlite3.h`, `sqlite3.c`        | ios, osx     |
 
-**SQLite version: 3.50.0.**
+**SQLite version: 3.53.4.**
 
 All four are produced by the same build that also supplies the Capacitor mobile template, so both
 templates ship byte-identical artefacts. That build's own `CONTRIBUTING.md` documents the
