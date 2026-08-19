@@ -17,27 +17,20 @@ fetching them from a separate dependency package at plugin-install time:
 
 **SQLite version: 3.50.0.**
 
-All four are produced by the `packages/sqlite-mobile` package in
-[`OutSystems/capacitor-mobile-nativeshell`](https://github.com/OutSystems/capacitor-mobile-nativeshell),
-which is the single build that also supplies the Capacitor mobile template — both templates ship
-byte-identical artefacts. See that package's `CONTRIBUTING.md` for the reproducible rebuild
-procedure and the manual republish step into this repository. The artefacts are **not** built here,
-and editing them in place will be overwritten by the next republish.
+All four are produced by the same build that also supplies the Capacitor mobile template, so both
+templates ship byte-identical artefacts. That build's own `CONTRIBUTING.md` documents the
+reproducible rebuild procedure and the manual republish step into this repository. The artefacts are
+**not** built here, and editing them in place will be overwritten by the next republish.
 
 Earlier plugin tags resolve their artefacts through
 `OutSystems/cordova-sqlite-storage-dependencies` instead. That repository remains a live
 build-time dependency of older MABS versions and must not be modified or retired.
 
-The connector and driver *sources* are unmodified work by Christopher J. Brody
-([`brodybits/android-sqlite-native-ndk-connector`](https://github.com/brodybits/android-sqlite-native-ndk-connector)
-and [`brodybits/android-sqlite-ndk-native-driver`](https://github.com/brodybits/android-sqlite-ndk-native-driver));
-only the build that produces the binaries has moved.
-
 ### The `browser` platform has been removed
 
 Also as of `6.1.0+2.0.0`. The browser platform's only SQLite engine was
 `sql-asm-memory-growth.js`, a third-party asm.js build of SQLite 3.22.3 that came from the
-dependency package. `sqlite-mobile` does not build that file, and there is no equivalent to vendor,
+dependency package. That build does not produce it, and there is no equivalent to vendor,
 so `<platform name="browser">`, `src/browser/SQLiteProxy.js` and the browser spec were removed
 along with it.
 
